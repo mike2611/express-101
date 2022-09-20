@@ -9,7 +9,6 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
-// set up mongoose connection
 // Set up mongoose connection
 const mongoose = require("mongoose");
 const mongoDB = "mongodb+srv://mike2611:mike2611password@cluster0.lxpxryr.mongodb.net/local_library?retryWrites=true&w=majority";
