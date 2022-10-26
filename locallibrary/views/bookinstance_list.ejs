@@ -1,0 +1,36 @@
+<%- include('./layout'); %>
+
+<h1>
+    <%= title %>
+</h1>
+
+<ul>
+    <% bookinstance_list.forEach((bookinstance) => { %>
+        <% if (bookinstance) { %>
+            <li>
+                <a href="<%= bookinstance.url%>">
+                    <%= bookinstance.book.title %> : <%= bookinstance.book.imprint %>
+                </a>
+                 -
+                <% if (bookinstance.status === 'Available') { %>
+                    <span class="text-success">
+                        <%= bookinstance.status %>
+                    </span>
+                <%} %>
+                <% if (bookinstance.status === 'Maintenance') { %>
+                    <span class="text-danger">
+                        <%= bookinstance.status %>
+                    </span>
+                <%} %>
+                <% if (bookinstance.status === 'Loaned') { %>
+                    <span class="text-warning">
+                        <%= bookinstance.due_back_formatted %>
+                    </span>
+                <%} %>
+            </li>
+        <% } else  { %>
+            <li>
+                There are no book copies in this library                
+            </li>
+        <% }}); %>
+</ul>

@@ -1,0 +1,37 @@
+<%- include('./layout'); %>
+
+<h1>
+    <%= bookinstance._id %>
+</h1>
+
+<p class="strong">
+    Title: 
+    <a href="<%= bookinstance.book.url %>"> <%= bookinstance.book.title %></a>    
+</p>
+
+<p class="strong">
+    Imprint:  <%= bookinstance.imprint %>
+</p>
+
+
+<p class="strong">
+    Status: 
+    <% if(bookinstance.status === 'Available')  { %>
+        <span class="text-succes">
+            <%= bookinstance.status %>
+        </span>
+    <% } else if(bookinstance.status == 'Maintenance') { %>
+        <span class="text-danger">
+            <%= bookinstance.status %>
+        </span>
+    <% } else { %>
+        <span class="text-warning">
+            <%= bookinstance.status %>            
+        </span>
+    <% } %> 
+</p>
+
+
+<% if(bookinstance.status !== 'Available') { %>
+    <p class="strong"> Due back: </p> <%= bookinstance.due_back_formatted %>
+<% } %>

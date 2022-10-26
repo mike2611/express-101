@@ -1,0 +1,59 @@
+<%- include('./layout'); %>
+
+<h1>
+    <%= book.title %>
+</h1>
+
+<p class="strong">
+    Author : 
+    <a href="<%= book.author.url %>">
+        <%= book.author.name %>
+    </a>
+</p>
+<p class="strong">
+    Summary: <%= book.summary %>
+</p>
+<p class="strong">
+    Genre:
+    <% book.genre.forEach((book) => { %>
+        <a href="<%= book.genre %>">
+            <%= book.name %>
+        </a>
+    <% }); %>
+</p>
+
+<div style="margin-left: 20px; margin-top: 20px">
+    <h4>Copies</h4>
+
+    <% if (book_instances > 0) { %>
+        <% book_instances.forEach((bookinstance) => { %>
+                <hr>
+                    <% if (bookinstance.status === 'Available') { %>
+                        <span class="text-success">
+                            <%= bookinstance.status %>
+                        </span>
+                    <%} %>
+                    <% if (bookinstance.status === 'Maintenance') { %>
+                        <span class="text-danger">
+                            <%= bookinstance.status %>
+                        </span>
+                    <%} %>
+                    <p>
+                        <%= bookinstance.imprint %>
+                    </p>
+                    <% if (bookinstance.status === 'Loaned') { %>
+                        <span class="text-warning">
+                            <%= bookinstance.due_back_formatted %>
+                        </span>
+                    <%} %>
+                    <a href="<%= bookinstance.url%>">
+                        <%= bookinstance.id %> : 
+                    </a>
+                </hr>
+        <% }); %>
+    <% } else { %>
+        <p class="text-danger">
+            There are no book copies in this library                
+        </p>
+    <% } %>
+</div>
